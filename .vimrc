@@ -1,4 +1,3 @@
-
 "------------------------------------------------------------------------------
 " Install vundle automatically
 " http://www.erikzaadi.com/2012/03/19/auto-installing-vundle-from-your-vimrc/
@@ -16,39 +15,28 @@ endif
 set nocompatible              " be iMproved, required
 filetype off                  " required
 
-
-
-" set the runtime path to include Vundle and initialize
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
-" alternatively, pass a path where Vundle should install plugins
-"call vundle#begin('~/some/path/here')
 
-" let Vundle manage Vundle, required
 Plugin 'gmarik/Vundle.vim'
 
-" plugin on GitHub repo
 Plugin 'bling/vim-airline'
-let g:airline_powerline_fonts = 1
-let g:airline_theme='wombat'
-
 Plugin 'scrooloose/nerdtree'
-let g:molokai_original = 1
-
-Bundle 'jistr/vim-nerdtree-tabs'
-
+Plugin 'jistr/vim-nerdtree-tabs'
 Plugin 'MarcWeber/vim-addon-mw-utils'
 Plugin 'tomtom/tlib_vim'
 Plugin 'garbas/vim-snipmate'
 Plugin 'honza/vim-snippets'
 
-" All of your Plugins must be added before the following line
 call vundle#end()            " required
 filetype plugin indent on    " required
 
+" Plugin settings
+let g:airline_powerline_fonts = 1
+let g:airline_theme='wombat'
+let g:molokai_original = 1
 
 " General Settings
-set nocompatible " not compatible with the old-fashion vi mode
 set bs=2  " allow backspacing over everything in insert mode
 set history=50    " keep 50 lines of command line history
 set ruler " show the cursor position all the time
@@ -92,11 +80,10 @@ set termencoding=utf-8
 set fileencoding=utf-8
 set fileencodings=ucs-bom,utf-8,big5,gb2312,latin1
 
-
-
+" Keyboard settings
 map <Leader>n <plug>NERDTreeTabsToggle<CR>
+imap jj <ESC>
 
 
 " close vim if the only window left open is a NERDTree
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
-
