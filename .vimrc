@@ -23,54 +23,105 @@ Plugin 'gmarik/Vundle.vim'
 Plugin 'bling/vim-airline'
 Plugin 'scrooloose/nerdtree'
 Plugin 'jistr/vim-nerdtree-tabs'
+Plugin 'kshenoy/vim-signature'
 Plugin 'MarcWeber/vim-addon-mw-utils'
 Plugin 'tomtom/tlib_vim'
 Plugin 'garbas/vim-snipmate'
 Plugin 'honza/vim-snippets'
+Plugin 'scrooloose/nerdcommenter'
+Plugin 'flazz/vim-colorschemes'
 
 call vundle#end()            " required
 filetype plugin indent on    " required
 
+
+"------------------------------------------------------------------------------
 " Plugin settings
+"------------------------------------------------------------------------------
 let g:airline_powerline_fonts = 1
-let g:airline_theme='wombat'
-let g:molokai_original = 1
+let g:airline_theme='luna'
+let g:SignatureMap = {
+        \ 'Leader'             :  "m",
+        \ 'PlaceNextMark'      :  "m,",
+        \ 'ToggleMarkAtLine'   :  "m.",
+        \ 'PurgeMarksAtLine'   :  "m-",
+        \ 'DeleteMark'         :  "dm",
+        \ 'PurgeMarks'         :  "mda",
+        \ 'PurgeMarkers'       :  "m<BS>",
+        \ 'GotoNextLineAlpha'  :  "']",
+        \ 'GotoPrevLineAlpha'  :  "'[",
+        \ 'GotoNextSpotAlpha'  :  "`]",
+        \ 'GotoPrevSpotAlpha'  :  "`[",
+        \ 'GotoNextLineByPos'  :  "]'",
+        \ 'GotoPrevLineByPos'  :  "['",
+        \ 'GotoNextSpotByPos'  :  "mn",
+        \ 'GotoPrevSpotByPos'  :  "mp",
+        \ 'GotoNextMarker'     :  "[+",
+        \ 'GotoPrevMarker'     :  "[-",
+        \ 'GotoNextMarkerAny'  :  "]=",
+        \ 'GotoPrevMarkerAny'  :  "[=",
+        \ 'ListLocalMarks'     :  "ms",
+        \ 'ListLocalMarkers'   :  "m?"
+        \ }
+        " re-map keybinding of plugin vim-signature
+        " https://github.com/yangyangwithgnu/use_vim_as_ide
+
+
+"------------------------------------------------------------------------------
+" Settings
+"------------------------------------------------------------------------------
+
 
 " General Settings
-set bs=2  " allow backspacing over everything in insert mode
-set history=50    " keep 50 lines of command line history
-set ruler " show the cursor position all the time
-set autoread " auto read when file is changed from outside
-
-" set status line
-set laststatus=2
-set t_Co=256
-
 syntax on
-set number
 
-set linespace=1.2
-set expandtab
-set shiftwidth=4
-set softtabstop=4
+set number
+set ruler           " show the cursor position all the time
+set autoread        " auto read when file is changed from outside
+set cursorline      " highlight current line
+set cursorcolumn    " highlight current column line
+set hlsearch        " highlight all search results
+
+set expandtab       " turn <tab> into <spaces>
+set shiftwidth=4    " tabsize=4 when formatting
+set softtabstop=4   " tabsize=4 for edit
+set foldmethod=indent   " folded by indent
+set nofoldenable    " not folded as startup
+set foldnestmax=2   " the methods of classes are folded, but internal
+                    " statements aren't
+
+set bs=2            " allow backspacing over everything in insert mode
+set history=50      " keep 50 lines of command line history
+set laststatus=2    " always show status line
 
 set clipboard=unnamed " yank to the system register (*) by default
-
 set wildchar=<TAB>  " start wild expansion in the command line using <TAB>
-set wildmenu    " wild char completion menu
-                " ignore these files while expanding wild chars
+set wildmenu        " wild char completion menu
 set wildignore=*.o,*.class,*.pyc
-set autoindent  " auto indentation
-set incsearch   " incremental search
-set nobackup    " no *~ backup files
-set copyindent  " copy the previous indentation on autoindenting
-set ignorecase  " ignore case when searching
-set smartcase   " ignore case if search pattern is all
-                " lowercase,case-sensitive otherwise
-set smarttab    " insert tabs on the start of a line according to context
+                    " ignore these files while expanding wild chars
+set autoindent      " auto indentation
+set incsearch       " incremental search
+set nobackup        " no *~ backup files
+set copyindent      " copy the previous indentation on autoindenting
+set ignorecase      " ignore case when searching
+set smartcase       " ignore case if search pattern is all
+                    " lowercase,case-sensitive otherwise
+set smarttab        " insert tabs on the start of a line according to context
 
 
-colorscheme molokai
+"---------------------------------------------------------------------------
+" Appearance & Themes
+"---------------------------------------------------------------------------
+set linespace=1.2
+set background=dark
+colorscheme solarized
+"colorscheme Monokai
+"colorscheme molakai
+"colorscheme phd
+
+hi CursorLine   cterm=NONE
+"hi CursorLine   cterm=NONE ctermbg=17 ctermfg=NONE
+
 
 "---------------------------------------------------------------------------
 "" ENCODING SETTINGS
@@ -80,10 +131,25 @@ set termencoding=utf-8
 set fileencoding=utf-8
 set fileencodings=ucs-bom,utf-8,big5,gb2312,latin1
 
+
+"---------------------------------------------------------------------------
 " Keyboard settings
+"---------------------------------------------------------------------------
+let mapleader=","
+
 map <Leader>n <plug>NERDTreeTabsToggle<CR>
 imap jj <ESC>
-
+nnoremap <space> za
 
 " close vim if the only window left open is a NERDTree
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
+
+
+"---------------------------------------------------------------------------
+" Individual settings
+"---------------------------------------------------------------------------
+autocmd FileType html setlocal shiftwidth=2 tabstop=2
+
+" auto reload vimrc when editing it
+autocmd! bufwritepost .vimrc source ~/.vimrc
+
