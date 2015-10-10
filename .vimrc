@@ -31,6 +31,7 @@ Plugin 'honza/vim-snippets'
 Plugin 'scrooloose/nerdcommenter'
 Plugin 'flazz/vim-colorschemes'
 Plugin 'Valloric/YouCompleteMe'
+Plugin 'jiangmiao/auto-pairs'
 
 call vundle#end()            " required
 filetype plugin indent on    " required
