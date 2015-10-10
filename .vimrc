@@ -30,6 +30,7 @@ Plugin 'garbas/vim-snipmate'
 Plugin 'honza/vim-snippets'
 Plugin 'scrooloose/nerdcommenter'
 Plugin 'flazz/vim-colorschemes'
+Plugin 'Valloric/YouCompleteMe'
 
 call vundle#end()            " required
 filetype plugin indent on    " required
@@ -65,6 +66,8 @@ let g:SignatureMap = {
         \ }
         " re-map keybinding of plugin vim-signature
         " https://github.com/yangyangwithgnu/use_vim_as_ide
+let g:ycm_global_ycm_extra_conf = '~/.vim/.ycm_extra_conf.py'
+"let g:solarized_termcolors=256
 
 
 "------------------------------------------------------------------------------
@@ -122,6 +125,8 @@ colorscheme solarized
 hi CursorLine   cterm=NONE
 "hi CursorLine   cterm=NONE ctermbg=17 ctermfg=NONE
 
+hi Pmenu ctermfg=4 ctermbg=7
+hi PmenuSel ctermfg=7 ctermbg=3
 
 "---------------------------------------------------------------------------
 "" ENCODING SETTINGS
@@ -140,6 +145,10 @@ let mapleader=","
 map <Leader>n <plug>NERDTreeTabsToggle<CR>
 imap jj <ESC>
 nnoremap <space> za
+
+" compile
+map <F7> :make<CR>
+map <F5> :make<CR>:!./a.out<CR>
 
 " close vim if the only window left open is a NERDTree
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
