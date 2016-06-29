@@ -21,6 +21,7 @@ call vundle#begin()
 Plugin 'gmarik/Vundle.vim'
 
 Plugin 'bling/vim-airline'
+Plugin 'vim-airline/vim-airline-themes'
 Plugin 'scrooloose/nerdtree'
 Plugin 'jistr/vim-nerdtree-tabs'
 Plugin 'kshenoy/vim-signature'
@@ -30,8 +31,9 @@ Plugin 'garbas/vim-snipmate'
 Plugin 'honza/vim-snippets'
 Plugin 'scrooloose/nerdcommenter'
 Plugin 'flazz/vim-colorschemes'
-Plugin 'Valloric/YouCompleteMe'
+"Plugin 'Valloric/YouCompleteMe'
 Plugin 'jiangmiao/auto-pairs'
+Plugin 'thinca/vim-quickrun'
 
 call vundle#end()            " required
 filetype plugin indent on    " required
@@ -41,7 +43,7 @@ filetype plugin indent on    " required
 " Plugin settings
 "------------------------------------------------------------------------------
 let g:airline_powerline_fonts = 1
-let g:airline_theme='luna'
+let g:airline_theme='base16'
 let g:SignatureMap = {
         \ 'Leader'             :  "m",
         \ 'PlaceNextMark'      :  "m,",
@@ -123,11 +125,11 @@ colorscheme solarized
 "colorscheme molakai
 "colorscheme phd
 
-hi CursorLine   cterm=NONE
+"hi CursorLine   cterm=NONE
 "hi CursorLine   cterm=NONE ctermbg=17 ctermfg=NONE
 
-hi Pmenu ctermfg=4 ctermbg=7
-hi PmenuSel ctermfg=7 ctermbg=3
+"hi Pmenu ctermfg=4 ctermbg=7
+"hi PmenuSel ctermfg=7 ctermbg=3
 
 "---------------------------------------------------------------------------
 "" ENCODING SETTINGS
@@ -150,6 +152,7 @@ nnoremap <space> za
 " compile
 map <F7> :make<CR>
 map <F5> :make<CR>:!./a.out<CR>
+map <F10> :QuickRun<CR>
 
 " close vim if the only window left open is a NERDTree
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
