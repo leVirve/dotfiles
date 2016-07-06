@@ -43,7 +43,7 @@ filetype plugin indent on    " required
 " Plugin settings
 "------------------------------------------------------------------------------
 let g:airline_powerline_fonts = 1
-let g:airline_theme='base16'
+let g:airline_theme='luna'
 let g:SignatureMap = {
         \ 'Leader'             :  "m",
         \ 'PlaceNextMark'      :  "m,",
@@ -120,8 +120,8 @@ set smarttab        " insert tabs on the start of a line according to context
 "---------------------------------------------------------------------------
 set linespace=1.2
 set background=dark
-colorscheme solarized
-"colorscheme Monokai
+"colorscheme solarized
+colorscheme Monokai
 "colorscheme molakai
 "colorscheme phd
 
