@@ -1,15 +1,14 @@
 "------------------------------------------------------------------------------
 " Install vundle automatically
-" http://www.erikzaadi.com/2012/03/19/auto-installing-vundle-from-your-vimrc/
 "------------------------------------------------------------------------------
-let iCanHazVundle=1
+let install_plugins=0
 let vundle_readme=expand('~/.vim/bundle/Vundle.vim/README.md')
 if !filereadable(vundle_readme)
     echo "Installing Vundle.."
     echo ""
     silent !mkdir -p ~/.vim/bundle
-    silent !git clone https://github.com/gmarik/Vundle.vim.git ~/.vim/bundle/Vundle.vim
-    let iCanHazVundle=0
+    silent !git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
+    let install_plugins=1
 endif
 
 set nocompatible              " be iMproved, required
@@ -18,7 +17,7 @@ filetype off                  " required
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 
-Plugin 'gmarik/Vundle.vim'
+Plugin 'VundleVim/Vundle.vim'
 
 Plugin 'bling/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
@@ -34,6 +33,12 @@ Plugin 'flazz/vim-colorschemes'
 "Plugin 'Valloric/YouCompleteMe'
 Plugin 'jiangmiao/auto-pairs'
 Plugin 'thinca/vim-quickrun'
+
+if install_plugins == 1
+    echo "Installing Vundles, please ignore key map error messages"
+    echo ""
+    :PluginInstall
+endif
 
 call vundle#end()            " required
 filetype plugin indent on    " required
