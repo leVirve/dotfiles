@@ -1,0 +1,14 @@
+BoldAsFont=no
+FontHeight=12
+Rows=40
+Locale=zh_TW
+Charset=UTF-8
+ThemeFile=solarized-dark.minttyrc
+Transparency=low
+Font=DejaVu Sans Mono for Powerline
+Columns=120
+CursorType=block
+Term=xterm-256color
+FontWeight=400
+FontIsBold=no
+FontSmoothing=full
