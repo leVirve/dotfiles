@@ -123,7 +123,6 @@ set smarttab        " insert tabs on the start of a line according to context
 "---------------------------------------------------------------------------
 " Appearance & Themes
 "---------------------------------------------------------------------------
-set linespace=1.2
 set background=dark
 "colorscheme solarized
 colorscheme Monokai
