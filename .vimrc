@@ -123,9 +123,10 @@ set smarttab        " insert tabs on the start of a line according to context
 "---------------------------------------------------------------------------
 " Appearance & Themes
 "---------------------------------------------------------------------------
+set t_Co=256
 set background=dark
-"colorscheme solarized
-colorscheme Monokai
+colorscheme solarized
+"colorscheme Monokai
 "colorscheme molakai
 "colorscheme phd
 
