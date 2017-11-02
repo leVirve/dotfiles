@@ -11,6 +11,4 @@ autoload -U compinit && compinit
 source $ZSH/oh-my-zsh.sh
 export PATH="/home/salas/miniconda3/bin:$PATH"
 
-alias py="python"
-alias gs="git status"
 

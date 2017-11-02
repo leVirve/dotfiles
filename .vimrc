@@ -30,9 +30,10 @@ Plugin 'garbas/vim-snipmate'
 Plugin 'honza/vim-snippets'
 Plugin 'scrooloose/nerdcommenter'
 Plugin 'flazz/vim-colorschemes'
-"Plugin 'Valloric/YouCompleteMe'
+Plugin 'Valloric/YouCompleteMe'
 Plugin 'jiangmiao/auto-pairs'
 Plugin 'thinca/vim-quickrun'
+Plugin 'majutsushi/tagbar'
 
 if install_plugins == 1
     echo "Installing Vundles, please ignore key map error messages"
@@ -49,6 +50,9 @@ filetype plugin indent on    " required
 "------------------------------------------------------------------------------
 let g:airline_powerline_fonts = 1
 let g:airline_theme='luna'
+let g:airline#extensions#tabline#enabled = 1
+let g:airline#extensions#tabline#left_sep = ' '
+let g:airline#extensions#tabline#left_alt_sep = '|'
 let g:SignatureMap = {
         \ 'Leader'             :  "m",
         \ 'PlaceNextMark'      :  "m,",
@@ -75,6 +79,7 @@ let g:SignatureMap = {
         " re-map keybinding of plugin vim-signature
         " https://github.com/yangyangwithgnu/use_vim_as_ide
 let g:ycm_global_ycm_extra_conf = '~/.vim/.ycm_extra_conf.py'
+let g:NERDTreeWinSize=20
 "let g:solarized_termcolors=256
 
 
@@ -148,16 +153,17 @@ set fileencodings=ucs-bom,utf-8,big5,gb2312,latin1
 "---------------------------------------------------------------------------
 " Keyboard settings
 "---------------------------------------------------------------------------
-let mapleader=","
+let mapleader=" "
 
 map <Leader>n <plug>NERDTreeTabsToggle<CR>
 imap jj <ESC>
-nnoremap <space> za
 
 " compile
 map <F7> :make<CR>
 map <F5> :make<CR>:!./a.out<CR>
 map <F10> :QuickRun<CR>
+
+nmap <F8> :TagbarToggle<CR>
 
 " close vim if the only window left open is a NERDTree
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
