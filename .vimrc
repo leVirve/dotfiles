@@ -1,145 +1,137 @@
-"------------------------------------------------------------------------------
-" Install vundle automatically
-"------------------------------------------------------------------------------
-let install_plugins=0
-let vundle_readme=expand('~/.vim/bundle/Vundle.vim/README.md')
-if !filereadable(vundle_readme)
-    echo "Installing Vundle.."
-    echo ""
-    silent !mkdir -p ~/.vim/bundle
-    silent !git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
-    let install_plugins=1
+
+" Install Vim-Plug automatically
+if empty(glob('~/.vim/autoload/plug.vim'))
+  silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
+    \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+  autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
 endif
 
-set nocompatible              " be iMproved, required
-filetype off                  " required
+call plug#begin()
 
-set rtp+=~/.vim/bundle/Vundle.vim
-call vundle#begin()
+Plug 'itchyny/lightline.vim'
+Plug 'joshdick/onedark.vim'
+Plug 'jiangmiao/auto-pairs'
+Plug 'Yggdroot/indentLine'
+Plug 'majutsushi/tagbar'
+"Plug 'christoomey/vim-tmux-navigator'
 
-Plugin 'VundleVim/Vundle.vim'
+Plug 'scrooloose/nerdtree'
+Plug 'Xuyuanp/nerdtree-git-plugin'
+Plug 'tmhedberg/SimpylFold'
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' } 
+Plug 'junegunn/fzf.vim'
+Plug 'airblade/vim-gitgutter'
+Plug 'tpope/vim-fugitive'
 
-Plugin 'bling/vim-airline'
-Plugin 'vim-airline/vim-airline-themes'
-Plugin 'scrooloose/nerdtree'
-Plugin 'jistr/vim-nerdtree-tabs'
-Plugin 'kshenoy/vim-signature'
-Plugin 'MarcWeber/vim-addon-mw-utils'
-Plugin 'tomtom/tlib_vim'
-Plugin 'garbas/vim-snipmate'
-Plugin 'honza/vim-snippets'
-Plugin 'scrooloose/nerdcommenter'
-Plugin 'flazz/vim-colorschemes'
-Plugin 'Valloric/YouCompleteMe'
-Plugin 'jiangmiao/auto-pairs'
-Plugin 'thinca/vim-quickrun'
-Plugin 'majutsushi/tagbar'
+Plug 'scrooloose/nerdcommenter'
+Plug 'Valloric/YouCompleteMe'
+Plug 'python-mode/python-mode'
+Plug 'w0rp/ale'
+Plug 'wakatime/vim-wakatime'
 
-if install_plugins == 1
-    echo "Installing Vundles, please ignore key map error messages"
-    echo ""
-    :PluginInstall
-endif
-
-call vundle#end()            " required
-filetype plugin indent on    " required
+call plug#end()
 
 
 "------------------------------------------------------------------------------
 " Plugin settings
 "------------------------------------------------------------------------------
-let g:airline_powerline_fonts = 1
-let g:airline_theme='luna'
-let g:airline#extensions#tabline#enabled = 1
-let g:airline#extensions#tabline#left_sep = ' '
-let g:airline#extensions#tabline#left_alt_sep = '|'
-let g:SignatureMap = {
-        \ 'Leader'             :  "m",
-        \ 'PlaceNextMark'      :  "m,",
-        \ 'ToggleMarkAtLine'   :  "m.",
-        \ 'PurgeMarksAtLine'   :  "m-",
-        \ 'DeleteMark'         :  "dm",
-        \ 'PurgeMarks'         :  "mda",
-        \ 'PurgeMarkers'       :  "m<BS>",
-        \ 'GotoNextLineAlpha'  :  "']",
-        \ 'GotoPrevLineAlpha'  :  "'[",
-        \ 'GotoNextSpotAlpha'  :  "`]",
-        \ 'GotoPrevSpotAlpha'  :  "`[",
-        \ 'GotoNextLineByPos'  :  "]'",
-        \ 'GotoPrevLineByPos'  :  "['",
-        \ 'GotoNextSpotByPos'  :  "mn",
-        \ 'GotoPrevSpotByPos'  :  "mp",
-        \ 'GotoNextMarker'     :  "[+",
-        \ 'GotoPrevMarker'     :  "[-",
-        \ 'GotoNextMarkerAny'  :  "]=",
-        \ 'GotoPrevMarkerAny'  :  "[=",
-        \ 'ListLocalMarks'     :  "ms",
-        \ 'ListLocalMarkers'   :  "m?"
-        \ }
-        " re-map keybinding of plugin vim-signature
-        " https://github.com/yangyangwithgnu/use_vim_as_ide
-let g:ycm_global_ycm_extra_conf = '~/.vim/.ycm_extra_conf.py'
-let g:NERDTreeWinSize=20
-"let g:solarized_termcolors=256
+
+let g:lightline = {
+  \ 'colorscheme': 'onedark',
+  \ }
+
+let g:ale_echo_msg_error_str = 'E'
+let g:ale_echo_msg_warning_str = 'W'
+let g:ale_echo_msg_format = '[%linter%: %code%] %s [%severity%]'
+let g:ale_sign_error = '✗'
+let g:ale_sign_warning = '⚠'
+let g:ale_statusline_format = ['✗ %d', '⚠ %d', '✔ OK']
+let g:ale_linters = {'python': ['pylint']}
+
+let g:pymode_python = 'python3'
+let g:pymode_lint = 0  " ALE
+let g:pymode_folding = 0  " SimplyFold
+let g:pymode_virtualenv = 0
+let g:pymode_run = 0
+let g:pymode_breakpoint = 0
+let g:pymode_options = 0
+let g:pymode_doc = 0
+let g:pymode_rope = 0
+let g:pymode_debug = 0
+
+
+let g:ycm_autoclose_preview_window_after_completion=1
+
+let g:NERDTreeWinSize=30
 
 
 "------------------------------------------------------------------------------
-" Settings
+" Appearance
 "------------------------------------------------------------------------------
+if has("termguicolors")
+    " fix bug for vim
+    set t_8f=[38;2;%lu;%lu;%lum
+    set t_8b=[48;2;%lu;%lu;%lum
 
+    " enable true color
+    set termguicolors
+endif
 
-" General Settings
+set termguicolors
+color onedark
 syntax on
 
 set number
-set ruler           " show the cursor position all the time
-set autoread        " auto read when file is changed from outside
 set cursorline      " highlight current line
 set cursorcolumn    " highlight current column line
-set hlsearch        " highlight all search results
-
-set expandtab       " turn <tab> into <spaces>
-set shiftwidth=4    " tabsize=4 when formatting
-set softtabstop=4   " tabsize=4 for edit
-set foldmethod=indent   " folded by indent
-set nofoldenable    " not folded as startup
-set foldnestmax=2   " the methods of classes are folded, but internal
-                    " statements aren't
-
-set bs=2            " allow backspacing over everything in insert mode
-set history=50      " keep 50 lines of command line history
-set laststatus=2    " always show status line
-
-set clipboard=unnamed " yank to the system register (*) by default
-set wildchar=<TAB>  " start wild expansion in the command line using <TAB>
-set wildmenu        " wild char completion menu
-set wildignore=*.o,*.class,*.pyc
-                    " ignore these files while expanding wild chars
-set autoindent      " auto indentation
-set incsearch       " incremental search
-set nobackup        " no *~ backup files
-set copyindent      " copy the previous indentation on autoindenting
-set ignorecase      " ignore case when searching
-set smartcase       " ignore case if search pattern is all
-                    " lowercase,case-sensitive otherwise
-set smarttab        " insert tabs on the start of a line according to context
-
-
-"---------------------------------------------------------------------------
-" Appearance & Themes
-"---------------------------------------------------------------------------
-set t_Co=256
-set background=dark
-colorscheme solarized
-"colorscheme Monokai
-"colorscheme molakai
-"colorscheme phd
+"set hlsearch        " highlight all search results
+"set laststatus=2    " always show status line
 
 "hi CursorLine   cterm=NONE
 "hi CursorLine   cterm=NONE ctermbg=17 ctermfg=NONE
 
 "hi Pmenu ctermfg=4 ctermbg=7
 "hi PmenuSel ctermfg=7 ctermbg=3
+
+
+"------------------------------------------------------------------------------
+" Settings
+"------------------------------------------------------------------------------
+
+" General Settings
+set noswapfile      " no *.sw* files
+set nobackup        " no *~ backup files
+set autoread        " auto read when file is changed from outside
+set history=50      " keep 50 lines of command line history
+
+" Space and Tab
+set tabstop=4       " tabstop
+set shiftwidth=4    " tabsize=4 when formatting
+set softtabstop=4   " tabsize=4 for edit
+set expandtab       " turn <tab> into <spaces>
+set bs=2            " allow backspacing over everything in insert mode
+
+set clipboard=unnamed " yank to the system register (*) by default
+set wildchar=<TAB>  " start wild expansion in the command line using <TAB>
+set wildmenu        " wild char completion menu
+set wildignore=*.o,*.class,*.pyc
+                    " ignore these files while expanding wild chars
+"set autoindent      " auto indentation
+"set incsearch       " incremental search
+"set copyindent      " copy the previous indentation on autoindenting
+"set ignorecase      " ignore case when searching
+"set smartcase       " ignore case if search pattern is all
+                    "" lowercase,case-sensitive otherwise
+"set smarttab        " insert tabs on the start of a line according to context
+
+" Folding
+set foldmethod=indent   " folded by indent
+set nofoldenable    " not folded as startup
+set foldnestmax=2   " the methods of classes are folded, but internal
+                    " statements aren't
+au BufWinLeave * silent mkview  " save the folding status
+au BufRead * silent loadview    " reload the folding status
+
 
 "---------------------------------------------------------------------------
 "" ENCODING SETTINGS
@@ -153,20 +145,24 @@ set fileencodings=ucs-bom,utf-8,big5,gb2312,latin1
 "---------------------------------------------------------------------------
 " Keyboard settings
 "---------------------------------------------------------------------------
-let mapleader=" "
 
-map <Leader>n <plug>NERDTreeTabsToggle<CR>
+" open NERDTree if there's no openning file
+autocmd StdinReadPre * let s:std_in=1
+autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
+" close the NERDTree when exit vim
+autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+
 imap jj <ESC>
 
-" compile
-map <F7> :make<CR>
-map <F5> :make<CR>:!./a.out<CR>
-map <F10> :QuickRun<CR>
-
+let mapleader=","
+map <Leader>n :NERDTreeToggle<CR>
+map <leader>g :YcmCompleter GoToDefinitionElseDeclaration<CR>
+" fzf panel
+nnoremap <silent> <C-p> :Files<CR>
+" folding
+nnoremap <space> za
+" tagbar
 nmap <F8> :TagbarToggle<CR>
-
-" close vim if the only window left open is a NERDTree
-autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
 
 
 "---------------------------------------------------------------------------
