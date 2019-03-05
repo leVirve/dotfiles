@@ -9,7 +9,8 @@ endif
 call plug#begin()
 
 Plug 'itchyny/lightline.vim'
-Plug 'joshdick/onedark.vim'
+"Plug 'joshdick/onedark.vim'
+Plug 'arcticicestudio/nord-vim'
 Plug 'jiangmiao/auto-pairs'
 Plug 'Yggdroot/indentLine'
 Plug 'majutsushi/tagbar'
@@ -37,7 +38,7 @@ call plug#end()
 "------------------------------------------------------------------------------
 
 let g:lightline = {
-  \ 'colorscheme': 'onedark',
+  \ 'colorscheme': 'nord',
   \ }
 
 let g:ale_echo_msg_error_str = 'E'
@@ -74,11 +75,10 @@ if has("termguicolors")
     set t_8b=[48;2;%lu;%lu;%lum
 
     " enable true color
-    set termguicolors
+    "set termguicolors
 endif
 
-set termguicolors
-color onedark
+color nord
 syntax on
 
 set number
