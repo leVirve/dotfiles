@@ -1,4 +1,3 @@
-
 " Install Vim-Plug automatically
 if empty(glob('~/.vim/autoload/plug.vim'))
   silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
@@ -19,7 +18,7 @@ Plug 'majutsushi/tagbar'
 Plug 'scrooloose/nerdtree'
 Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'tmhedberg/SimpylFold'
-Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' } 
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 Plug 'airblade/vim-gitgutter'
 Plug 'tpope/vim-fugitive'
@@ -164,7 +163,6 @@ nnoremap <space> za
 " tagbar
 nmap <F8> :TagbarToggle<CR>
 
-
 "---------------------------------------------------------------------------
 " Individual settings
 "---------------------------------------------------------------------------
@@ -172,4 +170,3 @@ autocmd FileType html setlocal shiftwidth=2 tabstop=2
 
 " auto reload vimrc when editing it
 autocmd! bufwritepost .vimrc source ~/.vimrc
-
