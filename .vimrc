@@ -13,7 +13,6 @@ Plug 'arcticicestudio/nord-vim'
 Plug 'jiangmiao/auto-pairs'
 Plug 'Yggdroot/indentLine'
 Plug 'majutsushi/tagbar'
-"Plug 'christoomey/vim-tmux-navigator'
 
 Plug 'scrooloose/nerdtree'
 Plug 'Xuyuanp/nerdtree-git-plugin'
@@ -24,10 +23,8 @@ Plug 'airblade/vim-gitgutter'
 Plug 'tpope/vim-fugitive'
 
 Plug 'scrooloose/nerdcommenter'
-Plug 'Valloric/YouCompleteMe'
 Plug 'python-mode/python-mode'
 Plug 'w0rp/ale'
-Plug 'wakatime/vim-wakatime'
 
 call plug#end()
 
@@ -58,9 +55,6 @@ let g:pymode_options = 0
 let g:pymode_doc = 0
 let g:pymode_rope = 0
 let g:pymode_debug = 0
-
-
-let g:ycm_autoclose_preview_window_after_completion=1
 
 let g:NERDTreeWinSize=30
 
@@ -155,7 +149,6 @@ imap jj <ESC>
 
 let mapleader=","
 map <Leader>n :NERDTreeToggle<CR>
-map <leader>g :YcmCompleter GoToDefinitionElseDeclaration<CR>
 " fzf panel
 nnoremap <silent> <C-p> :Files<CR>
 " folding
