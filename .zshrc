@@ -40,3 +40,5 @@ zi lucid as'command' pick"bin/*" atinit'export PYENV_ROOT="$PWD"' \
     atclone'PYENV_ROOT="$PWD" ./bin/pyenv-virtualenv-init - > zpyenvvirtualenv.zsh' \
     atpull"%atclone" src"zpyenvvirtualenv.zsh" nocompile'!' for \
     pyenv/pyenv-virtualenv
+
+[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
