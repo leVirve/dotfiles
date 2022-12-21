@@ -1,0 +1,5 @@
+zsh-users/zsh-completions
+zsh-users/zsh-autosuggestions
+zsh-users/zsh-history-substring-search
+zdharma-continuum/fast-syntax-highlighting kind:defer
+ohmyzsh/ohmyzsh path:lib
