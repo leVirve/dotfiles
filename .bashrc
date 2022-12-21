@@ -73,3 +73,4 @@ fi
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
 
 [ -f $HOME/bin/oh-my-posh ] && eval "$(oh-my-posh init bash --config ~/.poshthemes/amro.omp.json)"
+eval "$(starship init bash)"
