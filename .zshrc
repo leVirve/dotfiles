@@ -6,4 +6,8 @@
 source ${ZDOTDIR:-~}/.antidote/antidote.zsh
 antidote load
 
+export PYENV_ROOT="$HOME/.pyenv"
+command -v pyenv >/dev/null || export PATH="$PYENV_ROOT/bin:$PATH"
+
 eval "$(starship init zsh)"
+eval "$(pyenv init -)"
